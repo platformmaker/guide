@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <title>Concentration Guide</title>
+  <meta charset="utf-8">
+  <style>
+    div{
+      border: 5px solid gray;
+      display: grid;
+    }
+    #cctv{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows:
+    }
+    </style>
+</head>
+<body>
+  <ul>
+    <li>가로, 세로: 화면에 맞추어 크기 자동 조절</li>
+    <li>엔터키 누르면 이동 </li>
+    <li>PTZ 돌아가는 시간에 맞추기 위해 일정시간(5초) 지나면 다시 처음으로  </li>
+  </ul>
+ <script>
+ //var height = window.innerHeight;
+ //var height2 = (height-116)/2;
+//  document.getElementById("cctv").style.gridTemplateRows = height2+'px';
+//  document.getElementById("cctv5").style.gridTemplateRows = height2+'px';
+//  document.getElementById('cctv1').style.borderColor = "lime";
+//  </script>
+  <div id="cctv">
+    <div id= "cctv1"><img src="div1.jpg" id="div1" width="100%"></div>
+    <div id= "cctv2"><img src="div2.jpg" id="div2" width="100%"></div>
+    <div id= "cctv3"><img src="div3.jpg" id="div3" width="100%"></div>
+    <div id= "cctv4"><img src="div4.jpg" id="div4" width="100%"></div>
+    <div id= "cctv5"><img src="div5.jpg" id="div5" width="100%"></div>
+    <div id= "cctv6"><img src="div6.jpg" id="div6" width="100%"></div>
+    <div id= "cctv7"><img src="div7.jpg" id="div7" width="100%"></div>
+    <div id= "cctv8"><img src="div8.jpg" id="div8" width="100%"></div>
+    </div>
+    <script>
+    var height = window.innerHeight;
+    var height2 = (height-106)/2;
+    var height3 = height2-10;
+     document.getElementById("cctv").style.gridTemplateRows = height2+'px';
+     document.getElementById("cctv5").style.gridTemplateRows = height2-10+'px';
+     var k = 1;
+     while(k<9){
+      document.getElementById("div"+k).style.height = height3+'px';
+      k= k+1;
+     }
+    document.getElementById('cctv1').style.borderColor = "lime";
+   var i = 1;
+   var j = i+1;
+   window.onkeydown = function(){
+      if(event.keyCode == 13){
+        if(i<8){
+         document.getElementById('cctv'+i).style.borderColor = "gray";
+         document.getElementById('cctv'+j).style.borderColor = "lime";
+         i=i+1;
+         j=j+1;
+         }
+         else {
+         i=1;
+         j=i+1;
+         document.getElementById('cctv8').style.borderColor = "gray";
+         document.getElementById('cctv1').style.borderColor = "lime";
+          }
+       };
+      };
+      setInterval(callback, 5000);
+      function callback(){
+        document.getElementById('cctv2').style.borderColor = "gray";
+        document.getElementById('cctv3').style.borderColor = "gray";
+        document.getElementById('cctv4').style.borderColor = "gray";
+        document.getElementById('cctv5').style.borderColor = "gray";
+        document.getElementById('cctv6').style.borderColor = "gray";
+        document.getElementById('cctv7').style.borderColor = "gray";
+        document.getElementById('cctv8').style.borderColor = "gray";
+        document.getElementById('cctv1').style.borderColor = "lime";
+        i=1;
+        j=i+1;
+      }
+    </script>
+</body>
+</html>
