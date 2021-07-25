@@ -18,16 +18,9 @@
 <body>
   <ul>
     <li>가로, 세로: 화면에 맞추어 크기 자동 조절</li>
-    <li>엔터키 누르면 이동 </li>
-    <li>PTZ 돌아가는 시간에 맞추기 위해 일정시간(5초) 지나면 다시 처음으로  </li>
+    <li>~3초: 엔터 눌러도 이동X, 3~5초: 이동, 5초~:빨간색창 10초~: 경고 </li>
+    <li>PTZ 돌아가는 시간에 맞추기 위해 일정시간(40초) 지나면 다시 처음으로  </li>
   </ul>
- <script>
- //var height = window.innerHeight;
- //var height2 = (height-116)/2;
-//  document.getElementById("cctv").style.gridTemplateRows = height2+'px';
-//  document.getElementById("cctv5").style.gridTemplateRows = height2+'px';
-//  document.getElementById('cctv1').style.borderColor = "lime";
-//  </script>
   <div id="cctv">
     <div id= "cctv1"><img src="div1.jpg" id="div1" width="100%"></div>
     <div id= "cctv2"><img src="div2.jpg" id="div2" width="100%"></div>
@@ -50,10 +43,17 @@
       k= k+1;
      }
     document.getElementById('cctv1').style.borderColor = "lime";
+    setTimeout(first, 3000);
+    function first(){
+      document.getElementById('cctv1').style.borderColor = "aqua";
+    }
    var i = 1;
    var j = i+1;
+   var delaytime = Date.now() + 3000;
    window.onkeydown = function(){
       if(event.keyCode == 13){
+        if(Date.now() > delaytime){
+        delaytime = Date.now()+3000;
         if(i<8){
          document.getElementById('cctv'+i).style.borderColor = "gray";
          document.getElementById('cctv'+j).style.borderColor = "lime";
@@ -66,9 +66,27 @@
          document.getElementById('cctv8').style.borderColor = "gray";
          document.getElementById('cctv1').style.borderColor = "lime";
           }
-       };
-      };
-      setInterval(callback, 5000);
+          setTimeout(next, 3000);
+          function next(){
+            document.getElementById('cctv'+i).style.borderColor = "aqua";
+          }
+          var redalert = setTimeout(late, 5000);
+          function late(){
+            if(Date.now()>delaytime+1900){
+            document.getElementById('cctv'+i).style.borderColor = "red";
+          }
+          }
+          setTimeout(alertwindow, 10000);
+          function alertwindow(){
+            if(Date.now()>delaytime+6900){
+            alert('집중하세요!');
+          }
+          }
+        }
+        else{}
+       }
+      }
+      setInterval(callback, 40000);
       function callback(){
         document.getElementById('cctv2').style.borderColor = "gray";
         document.getElementById('cctv3').style.borderColor = "gray";
